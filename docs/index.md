@@ -6,7 +6,8 @@
 
 ## 刷课脚本
 
-- [加速版（有风险）](./resources/jiasu.md)
+- [普通版（推荐）](./resources/normal.md)
+- [加速版（可能不良）](./resources/jiasu.md)
 
 ## 教程
 
