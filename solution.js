@@ -6,7 +6,6 @@ var url_getCourses = "https://mooc1-2.chaoxing.com/mycourse/studentstudycourseli
 var url_ajaxCourses = "https://mooc1-2.chaoxing.com/multimedia/log/__LOG__?otherInfo=__OTHERINFO__&clipTime=__CLIPTIME__&jobid=__JOBID__&rt=0.9&clazzId=__CLASSID__&dtype=Video&duration=__DURATION__&userid=__USERID__&objectId=__OBJECTID__&view=pc&playingTime=__PLAYTIME__&isdrag=3&enc=__ENC__";
 var courseMd5 = null;
 var courseArray = new Array();
-var courseArray2 = new Array();
 var courseData = null;
 var chapterId = null;
 var status = 0; // 0空闲 1 繁忙
@@ -19,7 +18,8 @@ function start(){
   analyzeCourseInfo(getCourseInfo());
   // 完成阻止
   if( courseArray.length == 0 ){
-    start2();
+    tips("完成刷课！请检查是否有课程遗漏（由网络决定）", red);
+    return false;
   }else{
     console.log(courseArray.length);
     var data = courseArray.shift();
@@ -33,20 +33,9 @@ function start(){
     }, 10000);
   }
 }
-// 结束运行
-function start2(){
-  var data = courseArray2.shift();
-  var pattern = /getTeacherAjax\('(.+)','(.+)','(.+)'\);/;
-  data = data.match(pattern);
-  // console.log(data);
-  $("h4#cur" + data[3]).click();
-  setTimeout(function(){
-    link(getLink(true), true);
-  }, 10000);
-}
 // 获取链接
 function getLink(is_finish = false){
-  tips("获取链接中")
+  tips("获取链接中:" + is_finish)
   n = (is_finish === false) ? 0 : courseData.duration;
   var url = url_ajaxCourses;
   url = url.replace("__LOG__", courseData.dtoken);
@@ -72,10 +61,19 @@ function link(url, force=false){
   $.get(url, function(data){
     tips("状态：" + data['isPassed']);
     status = 0;
-    if( force === true && data['isPassed'] == false ){
-      tips("状态错误，30秒后重试");
+    if( data['isPassed'] === true ){
+      tips("状态通过", "green")
+      start();  // 跳过
+    }else if( force === true && data['isPassed'] == false ){
+      tips("状态错误，30秒后重试", "red");
       setTimeout(function(){
         link(url, true);
+      } ,30000);
+    }else if( force === false ){
+      tips("30秒后提交", "green");
+      // 延迟30秒运行通过
+      setTimeout(function(){
+        link(getLink(true), true);
       } ,30000);
     }else{
       start();
@@ -92,7 +90,6 @@ function getAllCourses(courseId, chapterId, clazzId){
   $.get(url_getCourses, function(data){
     var pattern = /getTeacherAjax\('(.+)','(.+)','(.+)'\);/gum;
     courseArray = data.match(pattern);
-    courseArray2 = data.match(pattern);
   });
 }
 // 获取课程信息
