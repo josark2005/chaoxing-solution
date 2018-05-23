@@ -51,7 +51,7 @@ function getLink(is_finish = false){
   // console.log(enc);
   enc = md5(enc);
   url = url.replace("__ENC__", enc);
-  // console.log(url);
+  console.log(url);
   return url;
 }
 // link
@@ -70,11 +70,11 @@ function link(url, force=false){
         link(url, true);
       } ,30000);
     }else if( force === false ){
-      tips("30秒后提交", "green");
+      tips(courseData.duration + "秒后提交", "green");
       // 延迟30秒运行通过
       setTimeout(function(){
         link(getLink(true), true);
-      } ,30000);
+      } ,courseData.duration*1000);
     }else{
       start();
     }
