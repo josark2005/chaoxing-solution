@@ -38,7 +38,7 @@ function start2(){
   var data = courseArray2.shift();
   var pattern = /getTeacherAjax\('(.+)','(.+)','(.+)'\);/;
   data = data.match(pattern);
-  console.log(data);
+  // console.log(data);
   $("h4#cur" + data[3]).click();
   setTimeout(function(){
     link(getLink(true), true);
@@ -62,7 +62,7 @@ function getLink(is_finish = false){
   // console.log(enc);
   enc = md5(enc);
   url = url.replace("__ENC__", enc);
-  console.log(url);
+  // console.log(url);
   return url;
 }
 // link
@@ -88,9 +88,8 @@ function getAllCourses(courseId, chapterId, clazzId){
   url_getCourses = url_getCourses.replace("__COURSEID__", courseId);
   url_getCourses = url_getCourses.replace("__CHAPTERID__", chapterId);
   url_getCourses = url_getCourses.replace("__CLASSID__", clazzId);
-  console.log(url_getCourses);
+  // console.log(url_getCourses);
   $.get(url_getCourses, function(data){
-  // $.get("https://mooc1-2.chaoxing.com/mycourse/studentstudycourselist?courseId=200105975&chapterId=105096140&clazzid=3870748", function(data){
     var pattern = /getTeacherAjax\('(.+)','(.+)','(.+)'\);/gum;
     courseArray = data.match(pattern);
     courseArray2 = data.match(pattern);
@@ -119,7 +118,7 @@ function analyzeCourseInfo(data){
     return false;
   }else{
     var _d = JSON.parse(data[1]);
-    console.log(_d);
+    // console.log(_d);
     courseData = _d;
     return _d;
   }
