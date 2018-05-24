@@ -19,7 +19,7 @@ function start(){
   analyzeCourseInfo(getCourseInfo());
   // 完成阻止
   if( courseArray.length == 0 ){
-    tips("完成刷课！请检查是否有课程遗漏（由网络决定）", red);
+    tips("完成刷课！请检查是否有课程遗漏（由网络决定）", "red");
     return false;
   }else{
     console.log(courseArray.length);
