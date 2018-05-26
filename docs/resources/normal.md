@@ -17,38 +17,31 @@ setTimeout("start();", 5000);
 // 开始运行
 function start(){
   analyzeCourseInfo(getCourseInfo());
-  // 完成阻止
-  if( courseArray.length == 0 ){
-    tips("完成刷课！请检查是否有课程遗漏（由网络决定）", "red");
-    return false;
-  }else{
-    console.log(courseArray.length);
-    var data = switchCourse();
-    while ( $("h4#cur" + data[3] + ">span").eq(1).hasClass("blue") ) {
-      tips("h4#cur" + data[3], "grey");
-      data = switchCourse();
+  console.log(courseArray.length);
+  var data = switchCourse();
+  while ( $("h4#cur" + data[3] + ">span").eq(1).hasClass("blue") ) {
+    data = switchCourse();
+    if( data === false ){
+      return data;
     }
-    if( courseArray.length == 0 ){
-      tips("完成刷课！请检查是否有课程遗漏（由网络决定）", "red");
-      return false;
-    }
-    // console.log(data);
-    $("h4#cur" + data[3]).click();
-    setTimeout(function(){
-      link(getLink(false));
-    }, 10000);
   }
+  // console.log(data);
+  $("h4#cur" + data[3]).click();
+  setTimeout(function(){
+    link(getLink(false));
+  }, 10000);
 }
 // 切换课程
 function switchCourse(){
   tips("切换课程", "grey");
   if( courseArray.length == 0 ){
-    tips("完成刷课！请检查是否有课程遗漏（由网络决定）", "red");
+    tips("完成刷课！请检查是否有课程遗漏（由网络决定）3", "red");
     return false;
   }
   var data = courseArray.shift();
   var pattern = /getTeacherAjax\('(.+)','(.+)','(.+)'\);/;
   data = data.match(pattern);
+  tips("h4#cur" + data[3], "grey");
   return data;
 }
 // 获取链接
