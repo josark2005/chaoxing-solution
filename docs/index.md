@@ -17,9 +17,10 @@
 - [普通版（推荐）](./resources/normal.md)
 - [加速版（可能不良）](./resources/jiasu.md)
 
-## 教程
+## 教程与文档
 
 - [通用教程](./tutorial.md)
+- [原理解析](./yljx.md)
 
 ## 更新日志
 
