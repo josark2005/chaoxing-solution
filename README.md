@@ -5,3 +5,7 @@
 ## 警告 Warning
 
 - 使用此脚本之前请 **阅读** [刷课原理分析](https://jokin1999.github.io/chaoxing-solution/ylfx.html)
+
+## 适配日志
+
+- 2018-09-12 适配更新
