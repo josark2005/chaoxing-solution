@@ -1,10 +1,10 @@
 /**
  * 超星刷课脚本
- * 更新时间：2018-09-12
+ * 更新时间：2018-09-15
  * 协议方式：模拟页面操作
  * 风险等级：轻微
  * @author  Jokin
- * @version 2.0.0-beta
+ * @version 2.0.1-beta
  */
 
 var right_seletcor = $("div.right#selector");
@@ -52,20 +52,6 @@ function listen() {
       tips('切换课程');
       switchCourse();
     },false);
-}
-// 静音控制
-function mute(times = 0) {
-    if (times > 10) {
-      tips('播放状态错误', 'red');
-      return false;
-    }
-    if (mute_btn.hasClass('vjs-vol-0')) {
-      tips("已静音");
-      return true;
-    } else {
-      mute_btn.click();
-      mute(times++);
-    }
 }
 // 获取所有课程
 function getAllCourses(){
