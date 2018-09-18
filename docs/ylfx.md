@@ -1,5 +1,7 @@
 # 超星网课解决方案原理分析
 
+**建议查看详细文章：[https://wr.twocola.com/2018/09/06/chaoxing-swf.html](https://wr.twocola.com/2018/09/06/chaoxing-swf.html)**
+
 由于超星使用`Flash`方案而不升级为`HTML5`方案，导致了无法使用javascript脚本对其进行直接操作。
 
 经过仔细分析超星网课的网络传输情况，发现其使用`Get`方式向服务器传递课程进度信息，并在`每次点击播放按钮`时传输信息。
