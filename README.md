@@ -1,5 +1,7 @@
 # 超星网课解决方案
 
+> 不提供个别适配啦，没有精力。**目前脚本不是协议！！协议相关代码请自行查看[协议版本](https://github.com/jokin1999/chaoxing-solution/tree/a6af3423d2820e1ed98725446af70ff36de7857f)**
+
 详情请访问[悟冗博客网课专题页](https://wr.twocola.com/2018/08/01/web-lessons.html)
 
 ## 关于问题
